@@ -7,5 +7,17 @@ module.exports = {
   ],
   plugins: [
     require('flowbite/plugin')
-  ]
+  ],
+  'colors': {
+    'primary': {
+      500: '#337ab7'
+    }
+  },
+  theme: {
+    'fontFamily': {
+      'open-sans': ['Open Sans', 'sans-serif'],
+      'dosis': ['Dosis', 'sans-serif'],
+      'pacifico': ['Pacifico', 'sans-serif']
+    }
+  }
 }
