@@ -5,6 +5,8 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.20'
 
 gem "image_processing", ">= 1.2"
 gem 'simple_form', '~> 5.3'
+
+gem 'acts_as_votable', '~> 0.14.0'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 

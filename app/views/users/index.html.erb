@@ -6,7 +6,11 @@
   <% @users.each do |user| %>                     <%# i %>
     <%= render user %>                            <%# i %>
     <p>
-      <%= link_to "Show this user", user %>       <%# i %>
+      <%# <%= link_to "Show this user", user %>        
+      <%= link_to "Log in", login_path(user) %> |
+
+      <%= link_to "Edit", edit_user_path(user) %>
+      
     </p>
   <% end %>
 </div>
