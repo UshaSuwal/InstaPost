@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     @post = Post.new
   end
   def index
-    @posts = Post.all.order('created_at DESC')
+    @posts = Post.all.order('created_at DESC').includes(:user, comments: :user)
   end
   def create
     @post = current_user.posts.create(post_params)
