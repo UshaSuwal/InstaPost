@@ -1,9 +1,22 @@
-<h1 class="text-2xl mb-4 font-bold">New Post</h1>
-
-<div class="md:w-[40%]">
-  <%= simple_form_for @post do |f| %>
-    <%= f.input :photo %>
-    <%= f.input :description, input_html: { rows: 8 } %>
-    <%= f.submit 'Post', class: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' %>
-  <% end %>
+<div class="flex justify-center items-center h-screen">
+  <div class="w-full md:w-[40%] p-4 bg-white rounded-lg shadow-md">
+    <h1 class="text-2xl mb-4 font-bold text-center">New Post</h1>
+    
+    <%= simple_form_for @post do |f| %>
+      <div class="mb-4">
+        <%= f.input :photo, as: :file, label: false, input_html: { class: 'hidden' } %>
+        <label for="post_photo" class="cursor-pointer text-blue-700 border border-blue-700 px-4 py-2 rounded-md hover:bg-blue-100">
+          Choose a file
+        </label>
+      </div>
+      
+      <div class="mb-4">
+        <%= f.input :description, input_html: { class: 'w-full border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50', rows: 8 } %>
+      </div>
+      
+      <div class="text-center">
+        <%= f.submit 'Post', class: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' %>
+      </div>
+    <% end %>
+  </div>
 </div>
