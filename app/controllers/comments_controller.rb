@@ -28,7 +28,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    binding.irb
     @comment = Comment.find(params[:id])
     @comment.destroy
     redirect_to root_path
@@ -47,12 +46,14 @@ class CommentsController < ApplicationController
     @comment = @post.comments.find(params[:id])
   end
 
-  def is_owner?
-    if @comment.user == current_user || @post.user == current_user
-      @comment.destroy
-      redirect_to root_path
-    else
-      redirect_to root_path
+
+
+
+    def is_owner?
+      # redirect_to root_path if Comment.find(params[:id]).user != current_user
+      unless @comment.user == current_user || @post.user == current_user
+        redirect_to root_path
+        return
+      end
     end
-  end
 end

@@ -8,7 +8,7 @@
           </div>
         <% end %>
         <div class="ml-2">
-          <div class="font-bold text-xl text-red-900">
+          <div class="font-bold text-xl text-red-600">
             <%= current_user ? link_to(post.user_email.split('@').first, user_path(post.user.id)) : link_to(post.user.email.split('@').first, login_path) %>
           </div>
         </div>
@@ -22,7 +22,7 @@
     </div>
     <% if post.photo.attached? %>
   <div class="relative w-full aspect-w-16 aspect-h-9 flex overflow-hidden justify-center items-center border border-gray-200">
-    <%= image_tag post.photo, class: 'object-cover object-center w-6/12 h-full' %>
+    <%= image_tag post.photo, class: 'object-cover object-center w-6/12 h-full m-10' %>
   </div>
 <% end %>
     <div class="px-4 py-2">
@@ -41,12 +41,18 @@
       <% post.comments.each do |comment| %>
         <div class="mt-4">
           <p><%= link_to comment.user_email.split('@').first, user_path(comment.user.id), class: 'font-bold' %> <%= comment.description %></p>
+          
           <% if comment.user == current_user%>
-            <%= link_to 'Edit | ', edit_post_comment_path(post_id: post.id, id: comment.id), class: 'text-blue-700 hover:underline' %>
-            <%= link_to 'Delete', post_comment_path(post_id: post.id, id: comment.id), method: :delete, class: 'text-red-700 hover:underline', data: { turbo_confirm: 'Are you sure?', "turbo-method": :delete} %>
-
+            <div class= 'inline-block bg-blue-500 text-xs hover:bg-blue-700 text-white py-2 px-4 rounded mr-2' ><i class="fa-solid fa-pen-to-square"></i>
+              <%= link_to 'Edit ', edit_post_comment_path(post_id: post.id, id: comment.id)%>
+            </div>
+            <div class= 'inline-block bg-red-500 text-xs hover:bg-red-700 text-white py-2 px-4 rounded mr-2'><i class="fa-solid fa-trash"></i>
+            <%= link_to 'Delete', post_comment_path(post_id: post.id, id: comment.id), method: :delete, data: { turbo_confirm: 'Are you sure?', "turbo-method": :delete} %>
+            </div>
           <% elsif post.user == current_user && post.user !=comment.user%>
-            <%= link_to 'Delete', post_comment_path(post_id: post.id, id: comment.id), method: :delete, class: 'text-red-700 hover:underline', data: { turbo_confirm: 'Are you sure?', "turbo-method": :delete} %>
+            <div class= 'inline-block bg-red-500 text-xs hover:bg-red-700 text-white py-2 px-4 rounded mr-2'><i class="fa-solid fa-trash"></i>
+            <%= link_to 'Delete', post_comment_path(post_id: post.id, id: comment.id), method: :delete, data: { turbo_confirm: 'Are you sure?', "turbo-method": :delete} %>
+            </div>
           <% end %>
         </div>
       <% end %>
@@ -60,3 +66,5 @@
     </div>
   </div>
 <% end %>
+
+
